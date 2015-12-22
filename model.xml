@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+	<featureModel chosenLayoutAlgorithm="1">
+		<struct>
+			<and abstract="true" mandatory="true" name="ISPL_FOP">
+				<and name="Base">
+					<and abstract="true" mandatory="true" name="sports">
+						<feature name="fussball"/>
+						<feature name="basketball"/>
+						<feature name="handball"/>
+						<feature name="rugby"/>
+						<feature name="ultimateFrisbee"/>
+					</and>
+					<and mandatory="true" name="statistic">
+						<feature mandatory="true" name="actual"/>
+						<feature name="alltime"/>
+					</and>
+					<and name="clock">
+						<feature name="PauseClock"/>
+						<feature mandatory="true" name="ResetClock"/>
+					</and>
+					<and name="player">
+						<feature name="pausePlayer"/>
+						<feature name="loadPlayer"/>
+					</and>
+					<and name="loadNsave">
+						<feature mandatory="true" name="fileFilter"/>
+					</and>
+				</and>
+			</and>
+		</struct>
+		<constraints>
+			<rule>
+				<imp>
+					<var>loadNsave</var>
+					<var>alltime</var>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>basketball</var>
+					<var>PauseClock</var>
+				</imp>
+			</rule>
+		</constraints>
+		<calculations Auto="true" Constraints="true" Features="true" Redundant="true" Tautology="true"/>
+		<comments/>
+		<featureOrder userDefined="false"/>
+	</featureModel>
