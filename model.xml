@@ -10,7 +10,7 @@
 						<feature name="rugby"/>
 						<feature name="ultimateFrisbee"/>
 					</and>
-					<and mandatory="true" name="statistic">
+					<and abstract="true" mandatory="true" name="statistic">
 						<feature mandatory="true" name="actual"/>
 						<feature name="alltime"/>
 					</and>
