@@ -12,7 +12,11 @@
 					</and>
 					<and abstract="true" mandatory="true" name="statistic">
 						<feature mandatory="true" name="actual"/>
-						<feature name="alltime"/>
+						<and name="alltime">
+							<and name="loadAndSave">
+								<feature mandatory="true" name="fileFilter"/>
+							</and>
+						</and>
 					</and>
 					<and name="clock">
 						<feature name="PauseClock"/>
@@ -22,19 +26,10 @@
 						<feature name="pausePlayer"/>
 						<feature name="loadPlayer"/>
 					</and>
-					<and name="loadNsave">
-						<feature mandatory="true" name="fileFilter"/>
-					</and>
 				</and>
 			</and>
 		</struct>
 		<constraints>
-			<rule>
-				<imp>
-					<var>loadNsave</var>
-					<var>alltime</var>
-				</imp>
-			</rule>
 			<rule>
 				<imp>
 					<var>basketball</var>
