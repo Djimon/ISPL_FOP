@@ -20,37 +20,17 @@ import Objects.Spieler;
 
 
 public class Top_Layout {
-	private JPanel top = new JPanel(new BorderLayout());
-	private JPanel left = new JPanel(new GridLayout(3,2));
-	private JPanel right = new JPanel(new FlowLayout());
-	private int i_wGames=0;
-	private int i_lGames=0;
-	private int i_gamesPasses=0;
-	private int i_gamesGoals=0;
-	private int i_tgamesPasses=0;
-	private int i_tgamesMPasses=0;
-	private JLabel wGames = new JLabel("Siege:"+i_wGames);
-	private JLabel lGames = new JLabel("Niederlagen:"+i_lGames);
-	private JLabel gamesPasses = new JLabel("P?sse je Spiel:"+i_gamesPasses);
-	private JLabel gamesMPasses = new JLabel("Tore je Spiel:"+i_gamesGoals);
-	private JLabel tgamesPasses = new JLabel("P?sse im Spiel:"+i_tgamesPasses);
-	private JLabel tgamesMPasses = new JLabel("Fehlp?sse im Spiel:"+i_tgamesMPasses);
+
 	
 	private JButton b_loadStatistik = new JButton("Statistik Laden");
-	private JButton	b_loseStatistik = new JButton("Verloren");
-	private JButton b_winStatistik = new JButton("Gewonnen");
+	
 
-
-	private File text;
-	private String lastOpenPath;
-	private String typeOfSport;
 	
 	public Top_Layout(String sport,List m_PlayerList ){
 	   original(sport,m_PlayerList);
 		
 		right.add(this.b_loadStatistik);
-		right.add(this.b_loseStatistik);
-		right.add(this.b_winStatistik);
+
 		
 		
 		

@@ -41,15 +41,15 @@ public class SwingAudioPlayer extends JFrame implements ActionListener {
 	private boolean isPause = false;
 	
 	private String audioFilePath;
-	private String lastOpenPath;
+	
 	
 	private JLabel labelFileName = new JLabel("Playing File:");
 	private JLabel labelTimeCounter = new JLabel("00:00:00");
 	private JLabel labelDuration = new JLabel("00:00:00");
 	
-	private JButton buttonOpen = new JButton("Open");
+	
 	private JButton buttonPlay = new JButton("Play");
-	private JButton buttonPause = new JButton("Pause");
+
 	
 	private JSlider sliderTime = new JSlider();
 	
@@ -88,18 +88,18 @@ public class SwingAudioPlayer extends JFrame implements ActionListener {
 		add(labelDuration, constraints);
 		
 		JPanel panelButtons = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 5));
-		panelButtons.add(buttonOpen);
+		
 		panelButtons.add(buttonPlay);
-		panelButtons.add(buttonPause);
+		
 		
 		constraints.gridwidth = 3;
 		constraints.gridx = 0;
 		constraints.gridy = 2;
 		add(panelButtons, constraints);
 		
-		buttonOpen.addActionListener(this);
+		
 		buttonPlay.addActionListener(this);
-		buttonPause.addActionListener(this);
+		
 		
 		pack();
 		
@@ -115,6 +115,7 @@ public class SwingAudioPlayer extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent event) {
 		Object source = event.getSource();
 		if (source instanceof JButton) {
+			//TODO:???
 			JButton button = (JButton) source;
 			if (button == buttonOpen) {
 				openFile();
@@ -124,63 +125,11 @@ public class SwingAudioPlayer extends JFrame implements ActionListener {
 				} else {
 					stopPlaying();
 				}
-			} else if (button == buttonPause) {
-				if (!isPause) {
-					pausePlaying();
-				} else {
-					resumePlaying();
-				}
-			}
+			} 
 		}
 	}
 
-	private void openFile() {
-		JFileChooser fileChooser = null;
-		
-		if (lastOpenPath != null && !lastOpenPath.equals("")) {
-			fileChooser = new JFileChooser(lastOpenPath);
-		} else {
-			fileChooser = new JFileChooser();
-		}
-		
-		FileFilter wavFilter = new FileFilter() {
-			@Override
-			public String getDescription() {
-				return "Sound file (*.WAV)";
-			}
 
-			@Override
-			public boolean accept(File file) {
-				if (file.isDirectory()) {
-					return true;
-				} else {
-					return file.getName().toLowerCase().endsWith(".wav");
-				}
-			}
-		};
-
-		
-		fileChooser.setFileFilter(wavFilter);
-		fileChooser.setDialogTitle("Open Audio File");
-		fileChooser.setAcceptAllFileFilterUsed(false);
-
-		int userChoice = fileChooser.showOpenDialog(this);
-		if (userChoice == JFileChooser.APPROVE_OPTION) {
-			audioFilePath = fileChooser.getSelectedFile().getAbsolutePath();
-			lastOpenPath = fileChooser.getSelectedFile().getParent();
-			if (isPlaying || isPause) {
-				stopPlaying();
-				while (player.getAudioClip().isRunning()) {
-					try {
-						Thread.sleep(100);
-					} catch (InterruptedException ex) {
-						ex.printStackTrace();
-					}
-				}
-			}
-			playBack();
-		}
-	}
 
 	/**
 	 * Start playing back the sound.
@@ -201,7 +150,7 @@ public class SwingAudioPlayer extends JFrame implements ActionListener {
 					buttonPause.setText("Pause");
 					buttonPause.setEnabled(true);
 					
-					player.load(audioFilePath);
+					
 					timer.setAudioClip(player.getAudioClip());
 					labelFileName.setText("Playing File: " + audioFilePath);
 					sliderTime.setMaximum((int) player.getClipSecondLength());
@@ -244,21 +193,7 @@ public class SwingAudioPlayer extends JFrame implements ActionListener {
 		playbackThread.interrupt();
 	}
 	
-	private void pausePlaying() {
-		buttonPause.setText("Resume");
-		isPause = true;
-		player.pause();
-		timer.pauseTimer();
-		playbackThread.interrupt();
-	}
 	
-	private void resumePlaying() {
-		buttonPause.setText("Pause");
-		isPause = false;
-		player.resume();
-		timer.resumeTimer();
-		playbackThread.interrupt();		
-	}
 	
 	private void resetControls() {
 		timer.reset();
@@ -266,7 +201,7 @@ public class SwingAudioPlayer extends JFrame implements ActionListener {
 
 		buttonPlay.setText("Play");
 		
-		buttonPause.setEnabled(false);
+		
 		
 		isPlaying = false;		
 	}

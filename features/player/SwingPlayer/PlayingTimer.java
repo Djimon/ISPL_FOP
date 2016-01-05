@@ -18,10 +18,10 @@ import javax.swing.JSlider;
 public class PlayingTimer extends Thread {
 	private DateFormat dateFormater = new SimpleDateFormat("HH:mm:ss");	
 	private boolean isRunning = false;
-	private boolean isPause = false;
+	
 	private boolean isReset = false;
 	private long startTime;
-	private long pauseTime;
+	
 	
 	private JLabel labelRecordTime;
 	private JSlider slider;
@@ -74,13 +74,7 @@ public class PlayingTimer extends Thread {
 		isRunning = false;
 	}
 	
-	void pauseTimer() {
-		isPause = true;
-	}
 	
-	void resumeTimer() {
-		isPause = false;
-	}
 	
 	/**
 	 * Generate a String for time counter in the format of "HH:mm:ss"
@@ -88,7 +82,7 @@ public class PlayingTimer extends Thread {
 	 */
 	private String toTimeString() {
 		long now = System.currentTimeMillis();
-		Date current = new Date(now - startTime - pauseTime);
+		Date current = new Date(now - startTime);
 		dateFormater.setTimeZone(TimeZone.getTimeZone("GMT"));
 		String timeCounter = dateFormater.format(current);
 		return timeCounter;

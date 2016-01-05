@@ -32,8 +32,7 @@ public class AudioPlayer implements LineListener {
 	 */
 	private boolean isStopped;
 
-	private boolean isPaused;
-
+	
 	private Clip audioClip;
 
 	/**
@@ -144,14 +143,7 @@ public class AudioPlayer implements LineListener {
 		isStopped = true;
 	}
 
-	public void pause() {
-		isPaused = true;
-	}
-
-	public void resume() {
-		isPaused = false;
-	}
-
+	
 	/**
 	 * Listens to the audio line events to know when the playback completes.
 	 */
