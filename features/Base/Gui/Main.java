@@ -26,7 +26,7 @@ public class Main {
 		
 		w.setVisilbe();
 		
-	//	mPlayer.setRun();
+		mPlayer.setRun();
 		
 		
 		//ToDO Frame for Pro and Elite
