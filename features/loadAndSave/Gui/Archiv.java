@@ -166,7 +166,7 @@ public class Archiv {
 	
 	
 	private static void openFile(String sports) {
-		JFileChooser fileChooser = null;
+		JFileChooser fileChooser;
 		
 		
 		if (lastOpenPath != null && !lastOpenPath.equals("")) {

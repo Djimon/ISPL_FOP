@@ -55,9 +55,7 @@ public class SwingAudioPlayer extends JFrame implements ActionListener {
 	
 	// Icons used for buttons
 	
-	
-	public SwingAudioPlayer() {
-		super("Java Audio Player");
+	public void _SwingAudioPlayer() {
 		setLayout(new GridBagLayout());
 		GridBagConstraints constraints = new GridBagConstraints();
 		constraints.insets = new Insets(5, 5, 5, 5);
@@ -107,6 +105,12 @@ public class SwingAudioPlayer extends JFrame implements ActionListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 	}
+	
+	public SwingAudioPlayer() 
+	{
+		super("Java Audio Player");
+		_SwingAudioPlayer();
+	}
 
 	/**
 	 * Handle click events on the buttons.
@@ -131,6 +135,28 @@ public class SwingAudioPlayer extends JFrame implements ActionListener {
 
 
 
+	public void _run()
+	{
+		buttonPlay.setText("Stop");
+		buttonPlay.setEnabled(true);		
+		timer.setAudioClip(player.getAudioClip());
+		labelFileName.setText("Playing File: " + audioFilePath);
+		sliderTime.setMaximum((int) player.getClipSecondLength());
+		labelDuration.setText(player.getClipLengthString());
+		
+		try
+		{		
+			player.play();
+		}
+		catch (IOException ex)
+		{
+			JOptionPane.showMessageDialog(SwingAudioPlayer.this,  
+					"I/O error while playing the audio file!", "Error", JOptionPane.ERROR_MESSAGE);
+			resetControls();
+			ex.printStackTrace();
+		}
+	}
+	
 	/**
 	 * Start playing back the sound.
 	 */
@@ -141,42 +167,13 @@ public class SwingAudioPlayer extends JFrame implements ActionListener {
 		playbackThread = new Thread(new Runnable() {
 
 			@Override
-			public void run() {
-				try {
+			public void run() 
+			{
+				_run();	
+				 
 
-					buttonPlay.setText("Stop");
-					buttonPlay.setEnabled(true);
-					
-					buttonPause.setText("Pause");
-					buttonPause.setEnabled(true);
-					
-					
-					timer.setAudioClip(player.getAudioClip());
-					labelFileName.setText("Playing File: " + audioFilePath);
-					sliderTime.setMaximum((int) player.getClipSecondLength());
-					
-					labelDuration.setText(player.getClipLengthString());
-					player.play();
-					
-					resetControls();
 
-				} catch (UnsupportedAudioFileException ex) {
-					JOptionPane.showMessageDialog(SwingAudioPlayer.this,  
-							"The audio format is unsupported!", "Error", JOptionPane.ERROR_MESSAGE);
-					resetControls();
-					ex.printStackTrace();
-				} catch (LineUnavailableException ex) {
-					JOptionPane.showMessageDialog(SwingAudioPlayer.this,  
-							"Could not play the audio file because line is unavailable!", "Error", JOptionPane.ERROR_MESSAGE);
-					resetControls();
-					ex.printStackTrace();
-				} catch (IOException ex) {
-					JOptionPane.showMessageDialog(SwingAudioPlayer.this,  
-							"I/O error while playing the audio file!", "Error", JOptionPane.ERROR_MESSAGE);
-					resetControls();
-					ex.printStackTrace();
-				}
-
+				resetControls();
 			}
 		});
 
@@ -185,8 +182,8 @@ public class SwingAudioPlayer extends JFrame implements ActionListener {
 
 	private void stopPlaying() {
 		isPause = false;
-		buttonPause.setText("Pause");
-		buttonPause.setEnabled(false);
+		//buttonPause.setText("Pause");
+		//buttonPause.setEnabled(false);
 		timer.reset();
 		timer.interrupt();
 		player.stop();

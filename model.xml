@@ -2,21 +2,21 @@
 	<featureModel chosenLayoutAlgorithm="1">
 		<struct>
 			<and abstract="true" mandatory="true" name="ISPL_FOP">
-				<and name="Base">
+				<and mandatory="true" name="Base">
+					<and abstract="true" mandatory="true" name="statistic">
+						<feature mandatory="true" name="actual"/>
+						<and name="alltime">
+							<and name="loadAndSave">
+								<feature name="fileFilter"/>
+							</and>
+						</and>
+					</and>
 					<and abstract="true" mandatory="true" name="sports">
 						<feature name="fussball"/>
 						<feature name="basketball"/>
 						<feature name="handball"/>
 						<feature name="rugby"/>
 						<feature name="ultimateFrisbee"/>
-					</and>
-					<and abstract="true" mandatory="true" name="statistic">
-						<feature mandatory="true" name="actual"/>
-						<and name="alltime">
-							<and name="loadAndSave">
-								<feature mandatory="true" name="fileFilter"/>
-							</and>
-						</and>
 					</and>
 					<and name="clock">
 						<feature name="PauseClock"/>

@@ -9,20 +9,21 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import Objects.BasketballSpieler;
-import Objects.FussballSpieler;
-import Objects.HandballSpieler;
-import Objects.RugbySpieler;
 import Objects.Spieler;
-import Objects.UltimateSpieler;
+
 
 public class Bottom_Layout {
 	
 	private JPanel bottom = new JPanel(new FlowLayout());	
 	private List<JButton> bList = new ArrayList<JButton>();
 	
-	public Bottom_Layout( String sport){
+	public void _Buttom_Layout(String sport)
+	{
+		System.out.println("Buttom_Layout initialized");
+	}
 	
+	public Bottom_Layout( String sport){
+		_Buttom_Layout(sport);
 	}
 	
 	

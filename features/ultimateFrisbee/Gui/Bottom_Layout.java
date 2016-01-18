@@ -9,12 +9,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import Objects.BasketballSpieler;
-import Objects.FussballSpieler;
-import Objects.HandballSpieler;
-import Objects.RugbySpieler;
+
 import Objects.Spieler;
-import Objects.UltimateSpieler;
+
 
 public class Bottom_Layout {
 	
@@ -23,7 +20,7 @@ public class Bottom_Layout {
 	
 	private int uTm = 17;
 	
-	public Bottom_Layout( String sport){
+	public void _Bottom_Layout( String sport){
 		original(sport);		
 		if (sport == "Ultimate"){
 			int count = 1;
@@ -43,7 +40,7 @@ public class Bottom_Layout {
 	
 	public List getPLayerList(){
 		
-		else if (!this.uPlayers.isEmpty()){
+		if (!this.uPlayers.isEmpty()){
 			return this.uPlayers;
 		}
 		original();

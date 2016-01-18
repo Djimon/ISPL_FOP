@@ -11,7 +11,7 @@ public class Main {
 	public static void main(String[] args) {
 		
 		usedSports.add("Ultimate");
-		original();
+		original(args);
 		
 	}
 

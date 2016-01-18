@@ -48,7 +48,8 @@ public class Create_New_MainWindow {
 		  }
 		};		
 	
-	public Create_New_MainWindow(int h, int w, String option,List<String> usedSports){
+	public void _Create_New_MainWindow(int h, int w, String option,List<String> usedSports)	
+	{
 		f = new JFrame(option);
 		JPanel mainPanel = new JPanel(new BorderLayout());
 		JPanel rbPanel = new JPanel(new FlowLayout());
@@ -71,6 +72,11 @@ public class Create_New_MainWindow {
 		mainPanel.add(this.getStarted, BorderLayout.SOUTH);
 	}
 	
+	public Create_New_MainWindow(int h, int w, String option,List<String> usedSports)
+	{
+		_Create_New_MainWindow(h, w, option, usedSports);
+	}
+	
 	public void setVisilbe(){
 		this.f.setVisible( true );
 	}
@@ -89,6 +95,7 @@ public class Create_New_MainWindow {
 		this.cList.add(rb);
 		return rb;
 	}
+	
 	
 
 }

@@ -35,7 +35,8 @@ public class Top_Layout {
 	private String lastOpenPath;
 	private String typeOfSport;
 	
-	public Top_Layout(String sport,List m_PlayerList ){
+	
+	public void _Top_Layout(String sport,List m_PlayerList ){
 		this.typeOfSport=sport;
 		Dimension d = new Dimension();
 		this.top.setMaximumSize(d);
@@ -45,6 +46,10 @@ public class Top_Layout {
 
 		setPlayerList(sport,m_PlayerList);
 		
+	}
+	
+	public Top_Layout(String sport,List m_PlayerList ){
+		_Top_Layout(sport, m_PlayerList);		
 	}
 	
 

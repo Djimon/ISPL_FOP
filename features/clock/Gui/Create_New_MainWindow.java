@@ -25,7 +25,7 @@ public class Create_New_MainWindow {
 	private void sportChosen(){
 		for(JRadioButton c: cList ){
 			if(c.isSelected())
-			{
+			{  // In extra Methode auslagern
 				Create_New_GameClockWindow clock;
 				f.setVisible(false);
 				Create_New_StatistikWindow spSt = new Create_New_StatistikWindow(c.getText(), f);

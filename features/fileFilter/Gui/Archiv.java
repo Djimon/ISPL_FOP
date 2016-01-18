@@ -16,8 +16,10 @@ import Objects.Spieler;
 
 public class Archiv {
 		
-	private static void openFile(String sports) {
-			
+	private static void openFile(String sports) 
+	{
+		JFileChooser fileChooser;
+		
 		FileFilter xsave = new FileFilter() 
 		{
 			@Override
@@ -121,7 +123,7 @@ public class Archiv {
 			  break;
 			  default: fileChooser.setFileFilter(xsave);
 		}
-	
+		//TODO: rethink: doppelte initialisierung
 		original(sports);
 		
 	}

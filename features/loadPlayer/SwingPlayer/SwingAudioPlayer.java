@@ -32,26 +32,18 @@ import javax.swing.filechooser.FileFilter;
  * @author www.codejava.net
  *
  */
-public class SwingAudioPlayer extends JFrame implements ActionListener {
-	
-	
+public class SwingAudioPlayer extends JFrame implements ActionListener 
+{	
+	private String audioFilePath;
+	private AudioPlayer player = new AudioPlayer();
 	private String lastOpenPath;	
 	private JButton buttonOpen = new JButton("Open");
+	JPanel panelButtons = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 5));		
 		
-		
-		
-	public SwingAudioPlayer() {
+	public void _SwingAudioPlayer() {
 		original();
-
-		
-		
-		
-		panelButtons.add(buttonOpen);
-			
-				
-		buttonOpen.addActionListener(this);
-	
-	
+		panelButtons.add(buttonOpen);				
+		buttonOpen.addActionListener(this);	
 	}
 
 	/**
@@ -59,9 +51,10 @@ public class SwingAudioPlayer extends JFrame implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent event) {
-		
+		Object source = event.getSource();
+		JButton button = (JButton) source;
 		if (source instanceof JButton) {
-			original();
+			original(event);
 			if (button == buttonOpen) {
 				openFile();
 			}  
@@ -117,7 +110,32 @@ public class SwingAudioPlayer extends JFrame implements ActionListener {
 	}
 
 	private void playBack() {
-		player.load(audioFilePath);
+		
+		try
+		{
+			player.load(audioFilePath);
+		}
+		catch (IOException ex)
+		{
+			JOptionPane.showMessageDialog(SwingAudioPlayer.this,  
+					"I/O error while playing the audio file!", "Error", JOptionPane.ERROR_MESSAGE);
+			resetControls();
+			ex.printStackTrace();
+		}
+		catch (UnsupportedAudioFileException ex)
+		{
+			JOptionPane.showMessageDialog(SwingAudioPlayer.this,  
+					"The audio format is unsupported!", "Error", JOptionPane.ERROR_MESSAGE);
+			resetControls();
+			ex.printStackTrace();
+		}  
+		catch (LineUnavailableException ex)
+		{
+			JOptionPane.showMessageDialog(SwingAudioPlayer.this,  
+					"Could not play the audio file because line is unavailable!", "Error", JOptionPane.ERROR_MESSAGE);
+			resetControls();
+			ex.printStackTrace();
+		}  
 		original();
 	}
 	

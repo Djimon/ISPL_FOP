@@ -33,24 +33,29 @@ import javax.swing.filechooser.FileFilter;
  *
  */
 public class SwingAudioPlayer extends JFrame implements ActionListener {
+	private AudioPlayer player = new AudioPlayer();
+	private PlayingTimer timer;
+	private Thread playbackThread;
 	private JButton buttonPause = new JButton("Pause");
+	private boolean isPlaying = false;
+	private boolean isPause = false;
 	
-	public SwingAudioPlayer() {
+	public void _SwingAudioPlayer() {
 		original();
 		panelButtons.add(buttonPause);
-		
 		buttonPause.addActionListener(this);
-		
-	
 	}
+	
 
 	/**
 	 * Handle click events on the buttons.
 	 */
 	@Override
 	public void actionPerformed(ActionEvent event) {
-		original(event);
-		else if (button == buttonPause) {
+		Object source = event.getSource();
+		JButton button = (JButton) source;
+		original(event);		
+		if (button == buttonPause) {
 				if (!isPause) {
 					pausePlaying();
 				} else {
@@ -59,12 +64,13 @@ public class SwingAudioPlayer extends JFrame implements ActionListener {
 			}
 	}
 
-	
-	private void playBack() {
+	public void _run()
+	{
 		buttonPause.setText("Pause");
 		buttonPause.setEnabled(true);
 		original();
 	}
+
 	
 	private void resetControls() {
 		buttonPause.setEnabled(false);

@@ -11,11 +11,8 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import Objects.BasketballSpieler;
-import Objects.FussballSpieler;
-import Objects.HandballSpieler;
-import Objects.RugbySpieler;
-import Objects.UltimateSpieler;
+import Objects.Spieler;
+
 
 public class Create_New_StatistikWindow {
 	private JFrame f;
@@ -26,8 +23,7 @@ public class Create_New_StatistikWindow {
 	private List<Object> PlayerList;
 	
 
-	
-	public Create_New_StatistikWindow(String sport, JFrame parent){
+	public void _Create_New_StatistikWindow(String sport, JFrame parent){
 		original(sport,parent);
 		
 		if (sport =="Ultimate"){
@@ -37,10 +33,11 @@ public class Create_New_StatistikWindow {
 		}
 		
 	}
+	
 
 	private void Add_Bottom_Top(String s) {
 		original(s);
-		else if (s == "Ultimate"){
+		if (s == "Ultimate"){
 			Add_Top(b.getBPlayer());
 		}
 		

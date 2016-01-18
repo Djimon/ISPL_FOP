@@ -34,9 +34,8 @@ public class Top_Layout {
 	private JLabel tgamesPasses = new JLabel("P?sse im Spiel:"+i_tgamesPasses);
 	private JLabel tgamesMPasses = new JLabel("Fehlp?sse im Spiel:"+i_tgamesMPasses);
 
-	
-	
-	public Top_Layout(String sport,List m_PlayerList ){
+	public void _Top_Layout(String sport, List m_PlayerList)
+	{
 		original(sport,m_PlayerList);
 		left.add(this.wGames);
 		left.add(this.lGames);
@@ -44,6 +43,11 @@ public class Top_Layout {
 		left.add(this.gamesMPasses);
 		left.add(this.tgamesPasses);
 		left.add(this.tgamesMPasses);
+			
+	}
+	
+	public Top_Layout(String sport,List m_PlayerList ){
+		_Top_Layout(sport, m_PlayerList);
 		
 	}
 	

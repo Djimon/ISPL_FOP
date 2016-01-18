@@ -61,8 +61,6 @@ public class Create_New_GameClockWindow {
 		this.buttonPanel = new JPanel(new FlowLayout());
 		this.startButton = new JButton("Start");
 		this.startButton.addActionListener(this.startTimer);
-		this.resetButton = new JButton("Reset");
-		this.resetButton.addActionListener(resetTimer);
 		this.buttonPanel.add(startButton);
 		this.buttonPanel.add(resetButton);
 		mainPanel.add(buttonPanel, BorderLayout.CENTER);
@@ -77,12 +75,7 @@ public class Create_New_GameClockWindow {
 		return mainPanel;
 	}
 	
-	private void resetTimer(){
-		this.min = this.gameTime;
-		this.sek = 0;
-		this.pause= 5000;
-		this.currentPart = this.gameParts;
-	}
+	
 	
 	private JLabel createGameLable() {
 		if(this.game == "Fussball" || this.game == "Handball")
@@ -122,32 +115,19 @@ public class Create_New_GameClockWindow {
 			  public void actionPerformed( ActionEvent e ) {
 				  if (min != 0 && sek != 0){
 					  sek--;
-				  }
-				  
-				  
+				  }				  
 				  resetLable();
 				  if (min == 0 && sek == 0){
 					  // ToDo Ring bell or play Jingel
-					  pause--;
-					  
+					  pause--;					  
 				  }
 				  if(sek == 0){
 					  sek = 60;
 					  min--;
 				  }
-				  
-				  if(min == 0 && sek == 0 && pause == 0 && currentPart != 0){
-					  currentPart--;
-					  pause = 5000;
-					  min = gameTime;
-					  sek = 0;
-				  }
-				  else if(min == 0 && sek == 0 && pause == 0 && currentPart == 0){
-					  resetTimer();
+				 if(min == 0 && sek == 0 && pause == 0 && currentPart == 0){
 					  timer.stop();
-				  }
-				  
-				  
+				  }				  
 			  }
 			};
 		
@@ -156,10 +136,7 @@ public class Create_New_GameClockWindow {
 				  timer.start();
 			  }
 		};
-		private ActionListener resetTimer = new ActionListener() {
-			   public void actionPerformed( ActionEvent e ) {
-				  resetTimer();
-			  }
-		};
+		
+
 	//ActionListener***************************************
 }
