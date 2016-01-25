@@ -21,7 +21,8 @@ public class Bottom_Layout {
 	private int fBall = 14;
 
 	
-	public void _Bottom_Layout( String sport){
+	public void _Bottom_Layout(String sport)
+	{
 		original(sport);
 		if (sport == "Fussball"){
 			int count = 1;
